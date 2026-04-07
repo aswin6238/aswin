@@ -1,0 +1,749 @@
+================================================================================
+                          JAVA LAB PROGRAMS
+                    MCA Laboratory Examination Reference
+================================================================================
+
+================================================================================
+01 Complex Number Addition - complex.java
+================================================================================
+
+import java.util.Scanner;
+
+public class complex {
+    double real;
+    double img;
+
+    complex(double r, double i) {
+        real = r;
+        img = i;
+    }
+
+    public static complex add(complex c1, complex c2) {
+        complex c3 = new complex(0, 0);
+        c3.real = c1.real + c2.real;
+        c3.img = c1.img + c2.img;
+        return c3;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter The real part of c1: ");
+        double r1 = sc.nextDouble();
+        System.out.println("Enter The imaginary part of c1: ");
+        double i1 = sc.nextDouble();
+
+        System.out.println("Enter The real part of c2: ");
+        double r2 = sc.nextDouble();
+        System.out.println("Enter The imaginary part of c2: ");
+        double i2 = sc.nextDouble();
+
+        complex c1 = new complex(r1, i1);
+        complex c2 = new complex(r2, i2);
+
+        complex c3 = add(c1, c2);
+        System.out.println("Sum of the two complex numbers is: " + c3.real + " + " + c3.img + "i");
+
+        sc.close();
+    }
+
+}
+
+================================================================================
+02 Product Class - Constructors, Getters & Setters - product.java
+================================================================================
+
+public class product {
+    String pname, pcode;
+    int price;
+
+    public product() {}
+
+    public product(String pname, String pcode, int price) {
+        this.pname = pname;
+        this.pcode = pcode;
+        this.price = price;
+    }
+
+    public void setName(String pname) {
+        this.pname = pname;
+    }
+
+    public void setCode(String pcode) {
+        this.pcode = pcode;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getName() {
+        return pname;
+    }
+
+    public String getCode() {
+        return pcode;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void display() {
+        System.out.println("Product Name: " + this.pname);
+        System.out.println("Product Code: " + this.pcode);
+        System.out.println("Product Price: " + this.price);
+    }
+
+    public static void main(String[] args) {
+        product p1 = new product();
+        p1.pcode = "P001";
+        p1.pname = "Laptop";
+        p1.price = 50000;
+        System.out.println("Product 1 Details:");
+        p1.display();
+
+        product p2 = new product("Smartphone", "P002", 20000);
+        System.out.println("\nProduct 2 Details:");
+        p2.display();
+
+        product p3 = new product("Tablet", "P003", 15000);
+        System.out.println("\nProduct 3 Details:");
+        p3.display();
+
+        product p = p3.getPrice()<(p1.getPrice()<p2.getPrice()?p1.getPrice():p2.getPrice())?p3:(p1.getPrice()<p2.getPrice()?p1:p2);
+        System.out.println("\nCheapest Product Details:");
+        p.display();
+    }
+
+}
+
+================================================================================
+03 Matrix Addition - matrixAddition.java
+================================================================================
+
+import java.util.Scanner;
+
+public class matrixAddition {
+    public static void main(String[] args) {
+        int m, n, p, q;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of rows in Matrix 1: ");
+        m = sc.nextInt();
+        System.out.println("Enter the number of columns in Matrix 1: ");
+        n = sc.nextInt();
+
+        System.out.println("Enter the number of rows in Matrix 2: ");
+        p = sc.nextInt();
+        System.out.println("Enter the number of columns in Matrix 2: ");
+        q = sc.nextInt();
+
+        if (p == m && q == n) {
+            int matrix1[][] = new int[m][n];
+            int matrix2[][] = new int[p][q];
+
+            System.out.println("Enter the elements of Matrix 1: ");
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    matrix1[i][j] = sc.nextInt();
+                }
+            }
+
+            System.out.println("Enter the elements of Matrix 2: ");
+            for (int i = 0; i < p; i++) {
+                for (int j = 0; j < q; j++) {
+                    matrix2[i][j] = sc.nextInt();
+                }
+            }
+
+            System.out.println("Matrix 1: ");
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    System.out.print(matrix1[i][j] + " ");
+                }
+                System.out.println();
+            }
+
+            System.out.println("Matrix 2: ");
+            for (int i = 0; i < p; i++) {
+                for (int j = 0; j < q; j++) {
+                    System.out.print(matrix2[i][j] + " ");
+                }
+                System.out.println();
+            }
+
+            int result[][] = new int[m][n];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    result[i][j] = matrix1[i][j] + matrix2[i][j];
+                }
+            }
+
+            System.out.println("The sum of the two matrices is: ");
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    System.out.print(result[i][j] + " ");
+                }
+                System.out.println();
+            }
+        } else {
+            System.out.println("Matrix addition is not possible. The number of rows and columns must be the same.");
+        }
+        sc.close();
+    }
+}
+
+================================================================================
+04 Matrix Symmetry Check - matrixSymmetry.java
+================================================================================
+
+import java.util.Scanner;
+
+public class matrixSymmetry{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of rows in the matrix: ");
+        int m = sc.nextInt();
+        System.out.println("Enter the number of columns in the matrix: ");
+        int n = sc.nextInt();
+        int matrix[][] = new int[m][n];
+        System.out.println("Enter the elements of the matrix: ");
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("The matrix is: ");
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        if (m != n) {
+            System.out.println("The matrix is not symmetric.");
+        } else {
+            boolean isSymmetric = true;
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (matrix[i][j] != matrix[j][i]) {
+                        isSymmetric = false;
+                        break;
+                    }
+                }
+                if (!isSymmetric) {
+                    break;
+                }
+            }
+            if (isSymmetric) {
+                System.out.println("The matrix is symmetric.");
+            } else {
+                System.out.println("The matrix is not symmetric.");
+            }
+        }
+        sc.close();
+    }
+}
+
+================================================================================
+05 Nested Classes - CPU with Inner and Static Classes - cpu.java
+================================================================================
+
+import java.util.Scanner;
+
+public class cpu {
+
+    // Non-static inner class
+    class processor {
+        double cores;
+        double cache;
+        String manufacturer;
+
+        processor(double cores, double cache, String manufacturer) {
+            this.cores = cores;
+            this.cache = cache;
+            this.manufacturer = manufacturer;
+        }
+
+        void displayProcessor() {
+            System.out.println("Processor Details:");
+            System.out.println("Cores: " + cores);
+            System.out.println("Cache: " + cache + " MB");
+            System.out.println("Manufacturer: " + manufacturer);
+        }
+    }
+
+    // Static nested class
+    static class RAM {
+        double memory;
+        double clockSpeed;
+        String manufacturer;
+
+        RAM(double memory, double clockSpeed, String manufacturer) {
+            this.memory = memory;
+            this.clockSpeed = clockSpeed;
+            this.manufacturer = manufacturer;
+        }
+
+        void displayRAM() {
+            System.out.println("RAM Details:");
+            System.out.println("Memory: " + memory + " GB");
+            System.out.println("Clock Speed: " + clockSpeed + " GHz");
+            System.out.println("Manufacturer: " + manufacturer);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        cpu c = new cpu();
+
+        // Processor input
+        System.out.println("Enter number of cores:");
+        double cores = sc.nextDouble();
+
+        System.out.println("Enter cache size (MB):");
+        double cache = sc.nextDouble();
+
+        sc.nextLine(); // clear buffer
+
+        System.out.println("Enter processor manufacturer:");
+        String pMan = sc.nextLine();
+
+        // RAM input
+        System.out.println("Enter RAM size (GB):");
+        double memory = sc.nextDouble();
+
+        System.out.println("Enter RAM clock speed (GHz):");
+        double clock = sc.nextDouble();
+
+        sc.nextLine(); // clear buffer
+
+        System.out.println("Enter RAM manufacturer:");
+        String rMan = sc.nextLine();
+
+        // Object creation
+        cpu.processor p = c.new processor(cores, cache, pMan);
+        cpu.RAM r = new cpu.RAM(memory, clock, rMan);
+
+        // Display
+        p.displayProcessor();
+        r.displayRAM();
+
+        sc.close();
+    }
+}
+
+================================================================================
+06 Search an Element in an Array - Linear Search - LinearSearch.java
+================================================================================
+
+import java.util.Scanner;
+
+public class LinearSearch {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the number of elements:");
+        int count = sc.nextInt();
+
+        int arr[] = new int[count];
+
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < count; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.println("Enter the element to search:");
+        int target = sc.nextInt();
+
+        boolean found = false;
+        for (int i = 0; i < count; i++) {
+            if (arr[i] == target) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("Element found in the array.");
+        } else {
+            System.out.println("Element not found in the array.");
+        }
+
+        sc.close();
+    }
+}
+
+================================================================================
+07 Method Overloading - Area Calculation - OverLoad.java
+================================================================================
+
+import java.util.Scanner;
+
+public class OverLoad {
+    void area(float x) {
+        System.out.println("Area of square: " + Math.pow(x, 2));
+    }
+
+    void area (float x, float y) {
+        System.out.println("Area of rectangle: " + (x * y));
+    }
+
+    void area(double x) {
+        System.out.println("Area of circle: " + (Math.PI * Math.pow(x, 2)));
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        OverLoad ol = new OverLoad();
+
+        System.out.println("Enter the side of the square:");
+        float side = sc.nextFloat();
+        ol.area(side);
+
+        System.out.println("Enter the length and breadth of the rectangle:");
+        float length = sc.nextFloat();
+        float breadth = sc.nextFloat();
+        ol.area(length, breadth);
+
+        System.out.println("Enter the radius of the circle:");
+        double radius = sc.nextDouble();
+        ol.area(radius);
+
+        sc.close();
+    }
+}
+
+================================================================================
+08 Inheritance - Teacher and Employee Classes - TeacherArrObjects.java
+================================================================================
+
+import java.util.Scanner;
+
+class EmployeeT {
+    int empid;
+    String name;
+    float salary;
+    String address;
+
+    EmployeeT() {}
+
+    EmployeeT(int empid, String name, float salary, String address) {
+        this.empid = empid;
+        this.name = name;
+        this.salary = salary;
+        this.address = address;
+    }
+}
+
+class Teacher extends EmployeeT {
+    String department, subject;
+
+    Teacher(int empid, String name, float salary, String address,
+            String department, String subject) {
+
+        super(empid, name, salary, address); // calling parent constructor
+        this.department = department;
+        this.subject = subject;
+    }
+
+    public void display() {
+        System.out.println("Teacher ID: " + empid);
+        System.out.println("Teacher Name: " + name);
+        System.out.println("Teacher Salary: " + salary);
+        System.out.println("Teacher Address: " + address);
+        System.out.println("Teacher Department: " + department);
+        System.out.println("Teacher Subject: " + subject);
+    }
+}
+
+public class TeacherArrObjects {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter Number of Teachers:");
+        int n = sc.nextInt();
+
+        Teacher[] teacher = new Teacher[n];
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.println("Enter Teacher " + (i + 1) + " Details:");
+
+            System.out.print("Enter Teacher ID: ");
+            int tid = sc.nextInt();
+
+            System.out.print("Enter Name: ");
+            String name = sc.next();
+
+            System.out.print("Enter Salary: ");
+            float salary = sc.nextFloat();
+
+            System.out.print("Enter Address: ");
+            String address = sc.next();
+
+            System.out.print("Enter Department: ");
+            String department = sc.next();
+
+            System.out.print("Enter Subject: ");
+            String subject = sc.next();
+
+            teacher[i] = new Teacher(tid, name, salary, address, department, subject);
+        }
+
+        System.out.println("\nTeachers are:\n");
+
+        for (Teacher t : teacher) {
+            t.display();
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
+
+================================================================================
+09 Interface - Area & Perimeter of Circle and Rectangle - IFaceDemo.java
+================================================================================
+
+import java.util.Scanner;
+
+interface AP {
+    void input();
+    void area();
+    void perimeter();
+}
+
+class Circle implements AP {
+    int r;
+    final double pi = 3.14;
+
+    public void input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter radius: ");
+        r = sc.nextInt();
+    }
+
+    public void area() {
+        double area = pi * r * r;
+        System.out.println("Area of Circle: " + area);
+    }
+
+    public void perimeter() {
+        double perimeter = 2 * pi * r;
+        System.out.println("Perimeter of Circle: " + perimeter);
+    }
+}
+
+class Rectangle implements AP {
+    int l, b;
+
+    public void input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter length: ");
+        l = sc.nextInt();
+        System.out.print("Enter breadth: ");
+        b = sc.nextInt();
+    }
+
+    public void area() {
+        double area = l * b;
+        System.out.println("Area of Rectangle: " + area);
+    }
+
+    public void perimeter() {
+        double perimeter = 2 * (l + b);
+        System.out.println("Perimeter of Rectangle: " + perimeter);
+    }
+}
+
+public class IFaceDemo {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int ch;
+
+        Circle c = new Circle();
+        Rectangle r = new Rectangle();
+
+        while (true) {
+            System.out.println("\n=== Menu ===");
+            System.out.println("1: Area of Circle");
+            System.out.println("2: Area of Rectangle");
+            System.out.println("3: Perimeter of Circle");
+            System.out.println("4: Perimeter of Rectangle");
+            System.out.println("5: Exit");
+
+            System.out.print("Enter choice: ");
+            ch = sc.nextInt();
+
+            switch (ch) {
+
+                case 1:
+                    c.input();
+                    c.area();
+                    break;
+
+                case 2:
+                    r.input();
+                    r.area();
+                    break;
+
+                case 3:
+                    c.input();
+                    c.perimeter();
+                    break;
+
+                case 4:
+                    r.input();
+                    r.perimeter();
+                    break;
+
+                case 5:
+                    System.out.println("Exiting...");
+                    break; // exits switch
+            }
+
+            if (ch == 5) {
+                break; // exits while loop
+            }
+        }
+
+        sc.close();
+    }
+}
+
+================================================================================
+10 Multilevel Inheritance - Person, Employee and Teacher - TeacherArrObjects.java
+================================================================================
+
+import java.util.Scanner;
+
+class Person {
+    String name, gender, address;
+    int age;
+
+    Person(String name, String gender, String address, int age) {
+        this.name = name;
+        this.gender = gender;
+        this.address = address;
+        this.age = age;
+    }
+}
+
+class Employee extends Person {
+    String empid, company_name, qualification;
+    float salary;
+
+    Employee(String name, String gender, String address, int age,
+             String empid, String company_name, String qualification, float salary) {
+
+        super(name, gender, address, age);
+        this.empid = empid;
+        this.company_name = company_name;
+        this.qualification = qualification;
+        this.salary = salary;
+    }
+}
+
+class Teacher extends Employee {
+    String subject, department, teacherid;
+
+    Teacher(String name, String gender, String address, int age,
+            String empid, String company_name, String qualification, float salary,
+            String subject, String department, String teacherid) {
+
+        super(name, gender, address, age, empid, company_name, qualification, salary);
+        this.subject = subject;
+        this.department = department;
+        this.teacherid = teacherid;
+    }
+
+    public void display() {
+        System.out.println("Teacher ID: " + teacherid);
+        System.out.println("Employee ID: " + empid);
+        System.out.println("Name: " + name);
+        System.out.println("Gender: " + gender);
+        System.out.println("Address: " + address);
+        System.out.println("Age: " + age);
+        System.out.println("Company Name: " + company_name);
+        System.out.println("Qualification: " + qualification);
+        System.out.println("Salary: " + salary);
+        System.out.println("Subject: " + subject);
+        System.out.println("Department: " + department);
+    }
+}
+
+public class TeacherArrObjects {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of teachers: ");
+        int n = sc.nextInt();
+
+        Teacher[] teacher = new Teacher[n];
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.println("\nEnter details of Teacher " + (i + 1));
+
+            System.out.print("Teacher ID: ");
+            String tid = sc.next();
+
+            System.out.print("Employee ID: ");
+            String empid = sc.next();
+
+            sc.nextLine(); // FIX for string input
+
+            System.out.print("Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Gender: ");
+            String gender = sc.next();
+
+            sc.nextLine();
+
+            System.out.print("Address: ");
+            String address = sc.nextLine();
+
+            System.out.print("Age: ");
+            int age = sc.nextInt();
+
+            System.out.print("Company Name: ");
+            String company_name = sc.next();
+
+            System.out.print("Department: ");
+            String department = sc.next();
+
+            System.out.print("Qualification: ");
+            String qualification = sc.next();
+
+            System.out.print("Subject: ");
+            String subject = sc.next();
+
+            System.out.print("Salary: ");
+            float salary = sc.nextFloat();
+
+            teacher[i] = new Teacher(name, gender, address, age,
+                    empid, company_name, qualification, salary,
+                    subject, department, tid);
+        }
+
+        System.out.println("\nTeachers are:\n");
+
+        for (Teacher t : teacher) {
+            t.display();
+            System.out.println();
+        }
+
+        sc.close();
+    }
+}
+
+================================================================================
+                         END OF JAVA LAB PROGRAMS
+================================================================================
